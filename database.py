@@ -22,8 +22,11 @@ def carregar_contatos():
     2. Se não existir, retornar []
     3. Se existir, abrir o arquivo, usar json.load() e retornar o conteúdo
     """
-    pass
-
+    if not os.path.exists(ARQUIVO):
+        return []
+    with open(ARQUIVO, 'r', encoding='utf-8') as contatos:
+        return json.load(contatos)
+        
 
 def salvar_contatos(lista_contatos):
     """
