@@ -1,6 +1,16 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox #ttk para fazer a tabela
 
+def adicionar():
+    nome = entry_nome.get()
+    telefone = entry_telefone.get()
+    email = entry_email.get()
+
+    
+
+
+
+
 #==========================================
 #Configurações da janela principal
 #==========================================
