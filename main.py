@@ -7,11 +7,9 @@ def adicionar():
     telefone = entry_telefone.get()
     email = entry_email.get()
     
-    
     #validação de string vazia ou espaços em branco
     if nome.strip() == "" or telefone.strip() == "" or email.strip() =="":
         return messagebox.showwarning('Atenção',"Os campos não podem estar em branco!")
-    
     
     #Adiconar dados no banco
     database.adicionar_contato(nome,telefone,email)
@@ -21,7 +19,6 @@ def adicionar():
     entry_telefone.delete(0,"end")
     entry_email.delete(0,"end")
     
-
 def atualizar_tabela():
     
     #1. limpa tudo que já está na tabela
@@ -51,8 +48,35 @@ def excluir():
             database.salvar_contatos(contatos)
             atualizar_tabela()
             
+def abrir_popup_editar():
+    dado_selecionado = tabela.selection()
+    
+    indice = tabela.index(dado_selecionado[0])
+    
+    #pegar os dados selecionados e para preencher o formulário
+    contatos = database.carregar_contatos()
+    contato_atual = contatos[indice]
+    
+    #janela pop-up
+    popup = ctk.CTkToplevel(janela)
+    popup.title("Editar Contato")
+    popup.geometry("350x300")
+    popup.grab_set()  # trava a janela principal até o pop up fechar
 
-
+    ctk.CTkLabel(popup, text="Nome:").pack(anchor="w", padx=20, pady=(20, 0))
+    entry_nome_popup = ctk.CTkEntry(popup)
+    entry_nome_popup.pack(fill="x", padx=20)
+    entry_nome_popup.insert(0, contato_atual["nome"])
+ 
+    ctk.CTkLabel(popup, text="Telefone:").pack(anchor="w", padx=20, pady=(10, 0))
+    entry_telefone_popup = ctk.CTkEntry(popup)
+    entry_telefone_popup.pack(fill="x", padx=20)
+    entry_telefone_popup.insert(0, contato_atual["telefone"])
+ 
+    ctk.CTkLabel(popup, text="Email:").pack(anchor="w", padx=20, pady=(10, 0))
+    entry_email_popup = ctk.CTkEntry(popup)
+    entry_email_popup.pack(fill="x", padx=20)
+    entry_email_popup.insert(0, contato_atual["email"])
 
 #==========================================
 #Configurações da janela principal
