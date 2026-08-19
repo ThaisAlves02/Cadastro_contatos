@@ -77,6 +77,16 @@ def abrir_popup_editar():
     entry_email_popup = ctk.CTkEntry(popup)
     entry_email_popup.pack(fill="x", padx=20)
     entry_email_popup.insert(0, contato_atual["email"])
+    
+    def salvar_edicao():
+        novo_nome = entry_nome_popup.get()
+        novo_telefone = entry_telefone_popup.get()
+        novo_email = entry_email_popup.get()
+        
+    
+    
+    
+    
 
 #==========================================
 #Configurações da janela principal
@@ -149,7 +159,7 @@ frame_botoes.pack(padx=20, pady=(0, 20), fill="x")
 botao_adicionar = ctk.CTkButton(frame_botoes, text="Adicionar",command=adicionar)
 botao_adicionar.pack(side="left", padx=5)
 
-botao_editar = ctk.CTkButton(frame_botoes, text="Editar")
+botao_editar = ctk.CTkButton(frame_botoes, text="Editar",command= abrir_popup_editar)
 botao_editar.pack(side="left", padx=5)
 
 botao_excluir = ctk.CTkButton(frame_botoes, 
