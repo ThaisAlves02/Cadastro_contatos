@@ -83,7 +83,7 @@ def abrir_popup_editar():
         novo_telefone = entry_telefone_popup.get()
         novo_email = entry_email_popup.get()
         
-    
+        database.atualizar_contato(indice, novo_nome, novo_telefone,novo_email)
     
     
     
