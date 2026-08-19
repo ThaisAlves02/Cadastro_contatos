@@ -24,9 +24,9 @@ def carregar_contatos():
     """
     if not os.path.exists(ARQUIVO):
         return []
-    with open(ARQUIVO, 'r', encoding='utf-8') as contatos:
+    with open(ARQUIVO,'r',encoding='utf-8') as contatos:
         return json.load(contatos)
-        
+
 
 def salvar_contatos(lista_contatos):
     """
@@ -38,7 +38,8 @@ def salvar_contatos(lista_contatos):
     2. Usar json.dump() para salvar a lista_contatos
        (dica: usar indent=4 para o arquivo ficar legível)
     """
-    pass
+    with open(ARQUIVO,'w',encoding='utf-8') as contatos:
+        json.dump(lista_contatos,contatos,indent=4,ensure_ascii=False)
 
 
 def adicionar_contato(nome, telefone, email):
@@ -51,7 +52,17 @@ def adicionar_contato(nome, telefone, email):
     3. Adicionar (append) esse dicionário na lista
     4. Salvar a lista atualizada (salvar_contatos)
     """
-    pass
+    contatos = carregar_contatos()
+    
+    novo_contato = {
+        "nome": nome,
+        "telefone": telefone,
+        "email":email
+    }
+    
+    contatos.append(novo_contato)
+    salvar_contatos(contatos)
+    
 
 
 def atualizar_contato(indice, nome, telefone, email):
