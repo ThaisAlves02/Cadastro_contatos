@@ -84,8 +84,8 @@ def abrir_popup_editar():
         novo_email = entry_email_popup.get()
         
         database.atualizar_contato(indice, novo_nome, novo_telefone,novo_email)
-    
-    
+        atualizar_tabela()   
+        
     
 
 #==========================================
