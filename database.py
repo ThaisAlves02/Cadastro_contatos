@@ -74,7 +74,16 @@ def atualizar_contato(indice, nome, telefone, email):
     2. Substituir o item na posição 'indice' pelos novos dados
     3. Salvar a lista atualizada
     """
-    pass
+    contatos = carregar_contatos()
+ 
+    contatos[indice] = {
+        "nome": nome,
+        "telefone": telefone,
+        "email": email
+    }
+ 
+    salvar_contatos(contatos)
+
 
 
 def excluir_contato(indice):
