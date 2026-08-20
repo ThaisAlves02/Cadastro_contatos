@@ -49,11 +49,16 @@ def excluir():
             atualizar_tabela()
             
 def abrir_popup_editar():
-    dado_selecionado = tabela.selection()
+    selecionado = tabela.selection()
     
-    indice = tabela.index(dado_selecionado[0])
+    # verificação de seleção
+    if not selecionado:
+        messagebox.showwarning("Atenção", "Selecione um contato para editar!")
+        return
     
-    #pegar os dados selecionados e para preencher o formulário
+    indice = tabela.index(selecionado[0])
+    
+    #Pega os dados selecinados para preencher o formulário
     contatos = database.carregar_contatos()
     contato_atual = contatos[indice]
     
@@ -61,8 +66,8 @@ def abrir_popup_editar():
     popup = ctk.CTkToplevel(janela)
     popup.title("Editar Contato")
     popup.geometry("350x300")
-    popup.grab_set()  # trava a janela principal até o pop up fechar
-
+    popup.grab_set()  # trava a janela principal até o popup fechar
+    
     ctk.CTkLabel(popup, text="Nome:").pack(anchor="w", padx=20, pady=(20, 0))
     entry_nome_popup = ctk.CTkEntry(popup)
     entry_nome_popup.pack(fill="x", padx=20)
@@ -77,14 +82,18 @@ def abrir_popup_editar():
     entry_email_popup = ctk.CTkEntry(popup)
     entry_email_popup.pack(fill="x", padx=20)
     entry_email_popup.insert(0, contato_atual["email"])
-    
+
     def salvar_edicao():
         novo_nome = entry_nome_popup.get()
         novo_telefone = entry_telefone_popup.get()
         novo_email = entry_email_popup.get()
-        
-        database.atualizar_contato(indice, novo_nome, novo_telefone,novo_email)
-        atualizar_tabela()   
+
+        database.atualizar_contato(indice,novo_nome,novo_telefone,novo_email)
+        atualizar_tabela()
+        popup.destroy()#fecha a janela
+    
+    botao_salvar = ctk.CTkButton(popup, text="Salvar", command=salvar_edicao)
+    botao_salvar.pack(pady=20)
         
     
 
