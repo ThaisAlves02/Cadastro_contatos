@@ -34,6 +34,11 @@ def atualizar_tabela():
 def excluir():
     dado_selecionado = tabela.selection()
     
+    # verificação de seleção
+    if not dado_selecionado:
+        messagebox.showwarning("Atenção", "Selecione um contato para editar!")
+        return
+    
     # pegar o índice do item selecionado
     indice = tabela.index(dado_selecionado[0])
 
@@ -49,14 +54,14 @@ def excluir():
             atualizar_tabela()
             
 def abrir_popup_editar():
-    selecionado = tabela.selection()
+    dado_selecionado = tabela.selection()
     
     # verificação de seleção
-    if not selecionado:
+    if not dado_selecionado:
         messagebox.showwarning("Atenção", "Selecione um contato para editar!")
         return
     
-    indice = tabela.index(selecionado[0])
+    indice = tabela.index(dado_selecionado[0])
     
     #Pega os dados selecinados para preencher o formulário
     contatos = database.carregar_contatos()
