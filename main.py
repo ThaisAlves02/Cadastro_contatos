@@ -11,8 +11,8 @@ def adicionar():
     #validação de string vazia ou espaços em branco
     # if nome.strip() == "" or telefone.strip() == "" or email.strip() =="":
     #     return messagebox.showwarning('Atenção',"Os campos não podem estar em branco!")
-    if validacoes.validar_nome(nome) == False:
-        return messagebox.showwarning('O campo nome não pode ficar vazio!')
+    if not validacoes.validar_nome(nome) or not validacoes.validar_telefone(telefone):
+        return messagebox.showwarning('O campo nome e telefone não podem ficar vazios!')
     
     
     #Adiconar dados no banco
