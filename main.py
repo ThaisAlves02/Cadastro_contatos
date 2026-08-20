@@ -14,6 +14,7 @@ def adicionar():
     if validacoes.validar_nome(nome) == False:
         return messagebox.showwarning('O campo nome não pode ficar vazio!')
     
+    
     #Adiconar dados no banco
     database.adicionar_contato(nome,telefone,email)
     atualizar_tabela()
