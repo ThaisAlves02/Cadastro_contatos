@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox #ttk para fazer a tabela
 import database
+import validacoes
 
 def adicionar():
     nome = entry_nome.get()
@@ -8,8 +9,10 @@ def adicionar():
     email = entry_email.get()
     
     #validação de string vazia ou espaços em branco
-    if nome.strip() == "" or telefone.strip() == "" or email.strip() =="":
-        return messagebox.showwarning('Atenção',"Os campos não podem estar em branco!")
+    # if nome.strip() == "" or telefone.strip() == "" or email.strip() =="":
+    #     return messagebox.showwarning('Atenção',"Os campos não podem estar em branco!")
+    if validacoes.validar_nome(nome):
+        return messagebox.showwarning('O campo nome não pode ficar vazio!')
     
     #Adiconar dados no banco
     database.adicionar_contato(nome,telefone,email)
